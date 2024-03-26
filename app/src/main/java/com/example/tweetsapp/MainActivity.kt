@@ -24,12 +24,6 @@ class MainActivity : ComponentActivity() {
     lateinit var tweetsApi: TweetsApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        GlobalScope.launch {
-            var respose = tweetsApi.getCategories()
-
-            Log.d("tweets", respose.body()?.distinct().toString())
-
-        }
 
         setContent {
             TweetsAppTheme {
