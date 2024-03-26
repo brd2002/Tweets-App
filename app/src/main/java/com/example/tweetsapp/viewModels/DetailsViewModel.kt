@@ -15,7 +15,7 @@ class DetailsViewModel @Inject constructor(private val repo: TweetsRepo) : ViewM
         get() = repo.tweets
     init {
         viewModelScope.launch {
-            repo.getTweets("android")
+            repo.getTweets("webdev")
         }
     }
 }
