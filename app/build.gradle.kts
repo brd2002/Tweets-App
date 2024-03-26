@@ -2,6 +2,10 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android")
+    id ("kotlin-android")
+
+
 }
 
 android {
@@ -70,9 +74,20 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-fragment:1.0.0")
     implementation("androidx.hilt:hilt-work:1.0.0")
     // When using Kotlin.
-    kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
     implementation("com.squareup.retrofit2:retrofit:2.10.0")
     implementation ("com.google.code.gson:gson:2.10.1")
+//    hilt dependency
+    implementation ("com.google.dagger:hilt-android:2.44")
+    kapt ("com.google.dagger:hilt-compiler:2.44")
+    // view model
+    val lifecycle_version = "2.7.0"
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version")
+    implementation ("androidx.work:work-runtime-ktx:2.7.1")
+    // navigation dependency
+    val nav_version = "2.7.7"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
 
 }
