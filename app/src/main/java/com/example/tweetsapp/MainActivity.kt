@@ -11,6 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.tweetsapp.api.TweetsApi
 import com.example.tweetsapp.screens.CategoryScreen
 import com.example.tweetsapp.screens.DetailScreen
@@ -30,10 +35,29 @@ class MainActivity : ComponentActivity() {
         setContent {
             TweetsAppTheme {
                 // A surface container using the 'background' color from the theme
-//                CategoryScreen()
-                DetailScreen()
+             App()
             }
         }
     }
 }
 
+@Composable
+fun App() {
+    val navControler = rememberNavController()
+    NavHost(navController = navControler, startDestination = "category") {
+        composable(route = "category"){
+            CategoryScreen {
+                navControler.navigate("detail/$it")
+            }
+        }
+        composable(route = "detail/{category}" , arguments =
+        listOf(
+            navArgument("category"){
+                type = NavType.StringType
+            }
+        )
+        ){
+            DetailScreen()
+        }
+    }
+}
